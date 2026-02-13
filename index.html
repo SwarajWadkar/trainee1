@@ -56,6 +56,7 @@
             max-width: 1000px;
             width: 95%;
             perspective: 1000px;
+            padding: 20px;
         }
 
         /* Image section */
@@ -110,10 +111,18 @@
             color: white;
             text-align: center;
             z-index: 20;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .content-inner {
             animation: slideInUp 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         @keyframes slideInUp {
@@ -165,6 +174,7 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 40px;
+            width: 100%;
         }
 
         .option {
@@ -179,6 +189,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 50;
         }
 
         .yes-option {
@@ -459,6 +470,7 @@
             .container {
                 flex-direction: column;
                 gap: 30px;
+                padding: 20px;
             }
 
             h1 {
@@ -475,15 +487,23 @@
 
             .options-container {
                 gap: 20px;
+                width: 100%;
             }
 
             .option {
-                padding: 15px 35px;
-                font-size: 1em;
+                padding: 18px 40px;
+                font-size: 1.1em;
+                z-index: 50;
+                min-width: 120px;
             }
 
             .yes-option {
-                padding: 18px 60px;
+                padding: 18px 50px;
+                font-size: 1.1em;
+            }
+
+            .no-option {
+                padding: 18px 40px;
                 font-size: 1.1em;
             }
         }
@@ -547,10 +567,10 @@
         // Create background particles
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 4; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                particle.style.width = (20 + Math.random() * 100) + 'px';
+                particle.style.width = (20 + Math.random() * 80) + 'px';
                 particle.style.height = particle.style.width;
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
@@ -563,7 +583,7 @@
         // Create confetti
         function createConfetti() {
             const colors = ['#ff1493', '#ff69b4', '#ffc0cb', '#ffd700', '#ffb6c1'];
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 40; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti-piece';
                 confetti.style.left = Math.random() * 100 + 'vw';
@@ -577,18 +597,18 @@
 
         // Create fireworks
         function createFireworks() {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
                     const x = Math.random() * window.innerWidth;
                     const y = Math.random() * (window.innerHeight * 0.6) + window.innerHeight * 0.2;
                     explodeFirework(x, y);
-                }, i * 150);
+                }, i * 200);
             }
         }
 
         function explodeFirework(x, y) {
             const colors = ['#ff1493', '#ff69b4', '#ffd700', '#ffb6c1', '#ffc0cb', '❤️', '✨'];
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 8; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'firework';
                 particle.textContent = Math.random() > 0.5 ? '✨' : '🎆';
@@ -597,7 +617,7 @@
                 particle.style.color = colors[Math.floor(Math.random() * (colors.length - 2))];
                 particle.style.fontSize = '2em';
                 
-                const angle = (i / 12) * Math.PI * 2;
+                const angle = (i / 8) * Math.PI * 2;
                 const velocity = 5 + Math.random() * 10;
                 const tx = Math.cos(angle) * velocity * 50;
                 const ty = Math.sin(angle) * velocity * 50;
@@ -616,7 +636,7 @@
             const emojis = ['❤️', '💕', '💖', '💗', '💘', '🌹', '✨', '💑', '🎉', '🌟'];
             let rainCount = 0;
             const rainInterval = setInterval(() => {
-                if (rainCount > 50) {
+                if (rainCount > 30) {
                     clearInterval(rainInterval);
                     return;
                 }
@@ -629,7 +649,7 @@
                 document.getElementById('messageScreen').appendChild(emoji);
                 rainCount++;
                 setTimeout(() => emoji.remove(), 3500);
-            }, 100);
+            }, 150);
         }
 
         // Initialize
